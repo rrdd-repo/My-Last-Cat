@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://df0r2kkylvfnv"]
+
+[ext_resource type="Script" path="res://misc/audio/spatial/manager/spatial_audio_manager.gd" id="1_aqiui"]
+[ext_resource type="Script" path="res://misc/audio/spatial/queue/audio_queue.gd" id="2_hbr6e"]
+[ext_resource type="AudioStream" uid="uid://dyshq6twfnas1" path="res://actor/common/sfx/retro-coin-4-236671.mp3" id="3_ufvso"]
+
+[node name="SpatialAudioManager" type="Node2D"]
+script = ExtResource("1_aqiui")
+
+[node name="CoinSFX" type="Node2D" parent="."]
+script = ExtResource("2_hbr6e")
+audio_count = 15
+audio_stream = ExtResource("3_ufvso")

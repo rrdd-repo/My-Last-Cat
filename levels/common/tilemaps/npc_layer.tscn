@@ -1,0 +1,22 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8ds3hmebouvr"]
+
+[ext_resource type="PackedScene" uid="uid://ck0i6ykncgic4" path="res://collectibles/coin/coin.tscn" id="1_8fa16"]
+[ext_resource type="PackedScene" uid="uid://dk8vhg2r74l4a" path="res://collectibles/health/health_pickup.tscn" id="2_0jvki"]
+[ext_resource type="PackedScene" uid="uid://0dj62lp4q7dg" path="res://actor/enemy/static/static_enemy.tscn" id="3_ni51s"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_fc6iu"]
+resource_name = "Collectibles"
+scenes/1/scene = ExtResource("1_8fa16")
+scenes/2/scene = ExtResource("2_0jvki")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_3hd6s"]
+resource_name = "Enemies"
+scenes/1/scene = ExtResource("3_ni51s")
+
+[sub_resource type="TileSet" id="TileSet_w7k2r"]
+tile_size = Vector2i(8, 8)
+sources/0 = SubResource("TileSetScenesCollectionSource_fc6iu")
+sources/2 = SubResource("TileSetScenesCollectionSource_3hd6s")
+
+[node name="NPCLayer" type="TileMapLayer"]
+tile_set = SubResource("TileSet_w7k2r")

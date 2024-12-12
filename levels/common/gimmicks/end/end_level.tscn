@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpgee3pu8746o"]
+
+[ext_resource type="Script" path="res://levels/common/gimmicks/end/end_level.gd" id="1_8it46"]
+[ext_resource type="Texture2D" uid="uid://bmu3ko4s8irvr" path="res://levels/common/gimmicks/end/sprites/Key_Door.png" id="2_48jb5"]
+[ext_resource type="Texture2D" uid="uid://ds62mcrbdwv5l" path="res://levels/common/gimmicks/end/sprites/Door.png" id="3_14qrm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jg3on"]
+radius = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5hus"]
+atlas = ExtResource("2_48jb5")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ferla"]
+atlas = ExtResource("3_14qrm")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ayr32"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5hus")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ferla")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[node name="EndLevel" type="Area2D" groups=["EndLevel"]]
+script = ExtResource("1_8it46")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jg3on")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_ayr32")
+animation = &"open"
+autoplay = "open"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

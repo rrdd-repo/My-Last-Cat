@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqlj5q5v2l1a0"]
+
+[ext_resource type="Script" path="res://actor/enemy/basic/basic_enemy.gd" id="1_y2mrc"]
+[ext_resource type="Texture2D" uid="uid://b6ewmn1o2f6el" path="res://actor/enemy/basic/sprites/enemy_sprite.png" id="2_ljrxw"]
+[ext_resource type="PackedScene" uid="uid://esv0p32mwm3b" path="res://actor/hitbox/enemy/basic/basic_enemy_hitbox.tscn" id="3_kv2jh"]
+[ext_resource type="Script" path="res://misc/audio/spatial/queue/spatial_audio_queue.gd" id="4_mopp1"]
+[ext_resource type="AudioStream" uid="uid://ctg4skmgj1vev" path="res://actor/enemy/basic/sfx/Randomize15.wav" id="5_jykj7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y2x3o"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4j6j4"]
+radius = 7.0
+
+[node name="BasicEnemy" type="CharacterBody2D" groups=["Hitstopped"]]
+collision_layer = 64
+collision_mask = 4
+script = ExtResource("1_y2mrc")
+max_health = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ljrxw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_y2x3o")
+
+[node name="BasicEnemyHitbox" parent="." instance=ExtResource("3_kv2jh")]
+collision_layer = 192
+collision_mask = 50
+
+[node name="BasicEnemyHurtbox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 48
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasicEnemyHurtbox"]
+shape = SubResource("CircleShape2D_4j6j4")
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="HurtSFX" type="Node2D" parent="Audio"]
+script = ExtResource("4_mopp1")
+audio_stream = ExtResource("5_jykj7")
+
+[connection signal="area_entered" from="BasicEnemyHurtbox" to="." method="_on_hurtbox_area_entered"]

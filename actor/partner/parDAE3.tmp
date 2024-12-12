@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbsvxx2gy8h1r"]
+
+[ext_resource type="Texture2D" uid="uid://bw1vr1mrcfxuw" path="res://icon.svg" id="1_exgti"]
+[ext_resource type="Script" path="res://actor/partner/partner.gd" id="1_fu0xo"]
+[ext_resource type="PackedScene" uid="uid://c1bfg7ajxvtja" path="res://actor/hitbox/partner/partner_hitbox.tscn" id="3_c2flw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_787sj"]
+radius = 57.0351
+
+[node name="Partner" type="CharacterBody2D"]
+scale = Vector2(0.1, 0.1)
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_fu0xo")
+follow_distance = 10.0
+deceleration = 3000.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_exgti")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_787sj")
+
+[node name="PartnerHitbox" parent="." instance=ExtResource("3_c2flw")]
+damage = 1

@@ -1,0 +1,74 @@
+[gd_scene load_steps=16 format=4 uid="uid://bhhud5pf6ep8c"]
+
+[ext_resource type="PackedScene" uid="uid://bf7ucwnq3g0ul" path="res://actor/player/player.tscn" id="1_p8c5v"]
+[ext_resource type="Script" path="res://levels/level_test/level_test.gd" id="1_ycmy1"]
+[ext_resource type="PackedScene" uid="uid://casagc83e6svl" path="res://levels/common/hud/hud.tscn" id="2_cysbp"]
+[ext_resource type="PackedScene" uid="uid://cbsvxx2gy8h1r" path="res://actor/partner/partner.tscn" id="3_ban4o"]
+[ext_resource type="Script" path="res://actor/partner/conditions/time_based_condition.gd" id="5_gjq1t"]
+[ext_resource type="PackedScene" uid="uid://b8ds3hmebouvr" path="res://levels/common/tilemaps/npc_layer.tscn" id="6_5vjge"]
+[ext_resource type="PackedScene" uid="uid://bqlj5q5v2l1a0" path="res://actor/enemy/basic/basic_enemy.tscn" id="6_hn8tl"]
+[ext_resource type="PackedScene" uid="uid://dhbmlwih7r5b8" path="res://levels/common/tilemaps/ground_layer.tscn" id="7_fhuo0"]
+[ext_resource type="PackedScene" uid="uid://djgx6lg5hijws" path="res://levels/common/tilemaps/decoration_layer.tscn" id="8_jjq4w"]
+[ext_resource type="PackedScene" uid="uid://dfsa8q2eyyik1" path="res://levels/common/gimmicks/condition_switch/partner_condition_switch.tscn" id="10_2pmwg"]
+[ext_resource type="Texture2D" uid="uid://bw1vr1mrcfxuw" path="res://icon.svg" id="11_3kqpm"]
+[ext_resource type="Script" path="res://actor/partner/conditions/jump_count_condition.gd" id="13_c7bfb"]
+
+[sub_resource type="Resource" id="Resource_7vja1"]
+script = ExtResource("5_gjq1t")
+time_before_homing = 5.0
+
+[sub_resource type="Resource" id="Resource_vppge"]
+script = ExtResource("13_c7bfb")
+jump_threshold = 4
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1qn5"]
+size = Vector2(49, 9)
+
+[node name="LevelTest" type="Node2D"]
+script = ExtResource("1_ycmy1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("2_cysbp")]
+
+[node name="Player" parent="." groups=["Collector"] instance=ExtResource("1_p8c5v")]
+z_index = 1
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Partner" parent="." node_paths=PackedStringArray("actor_to_track") groups=["Collector"] instance=ExtResource("3_ban4o")]
+position = Vector2(-15, 1)
+collision_mask = 4
+player_path = NodePath("../Player")
+partner_condition = SubResource("Resource_7vja1")
+actor_to_track = NodePath("../Player")
+
+[node name="Tilemaps" type="Node2D" parent="."]
+
+[node name="NPCLayer" parent="Tilemaps" instance=ExtResource("6_5vjge")]
+
+[node name="GroundLayer" parent="Tilemaps" instance=ExtResource("7_fhuo0")]
+tile_map_data = PackedByteArray("AAD9/wEAAwAKAAcAAAD+/wEAAwAKAAcAAAD//wEAAwAKAAcAAAAAAAEAAwAKAAcAAAABAAEAAwAKAAcAAAACAAEAAwAKAAcAAAADAAEAAwAKAAcAAAAEAAEAAwAKAAcAAAAEAAIAAwAKAAcAAAAFAAIAAwAKAAcAAAAFAAMAAwAKAAcAAAAFAAQAAwAKAAcAAAAFAAUAAwAKAAcAAAAFAAYAAwAKAAcAAAAFAAcAAwAKAAcAAAAFAAgAAwAKAAcAAAAGAAgAAwAKAAcAAAAHAAgAAwAKAAcAAAAIAAgAAwAKAAcAAAAIAAcAAwAKAAcAAAAJAAcAAwAKAAcAAAAKAAcAAwAKAAcAAAAKAAgAAwAKAAcAAAALAAgAAwAKAAcAAAAMAAgAAwAKAAcAAAANAAgAAwAKAAcAAAAOAAgAAwAKAAcAAAAPAAgAAwAKAAcAAAAPAAcAAwAKAAcAAAAOAAcAAwAKAAcAAAANAAcAAwAKAAcAAAAMAAcAAwAKAAcAAAALAAcAAwAKAAcAAAA=")
+
+[node name="DecorationLayer" parent="Tilemaps" instance=ExtResource("8_jjq4w")]
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="BasicEnemy" parent="Enemies" instance=ExtResource("6_hn8tl")]
+position = Vector2(72, 74)
+
+[node name="PartnerConditionSwitch" parent="." node_paths=PackedStringArray("partner_to_switch", "tracked_actor") instance=ExtResource("10_2pmwg")]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(86, 48)
+reset_condition = true
+new_condition = SubResource("Resource_vppge")
+partner_to_switch = NodePath("../Partner")
+tracked_actor = NodePath("../Player")
+
+[node name="Sprite2D" type="Sprite2D" parent="PartnerConditionSwitch"]
+scale = Vector2(0.388178, 0.0667815)
+texture = ExtResource("11_3kqpm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartnerConditionSwitch"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_b1qn5")

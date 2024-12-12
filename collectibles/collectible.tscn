@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2dfuxd730ya7"]
+
+[ext_resource type="Script" path="res://collectibles/collectible.gd" id="1_agfop"]
+
+[node name="Collectible" type="Area2D"]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_agfop")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

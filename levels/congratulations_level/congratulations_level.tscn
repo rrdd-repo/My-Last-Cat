@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=3 uid="uid://qjt05lrm7bb1"]
+
+[ext_resource type="Script" path="res://levels/congratulations_level/congratulations_level.gd" id="1_stqdp"]
+[ext_resource type="AudioStream" uid="uid://8ybkr6etbrly" path="res://music/Who Likes to Party.mp3" id="2_5nxvm"]
+[ext_resource type="Texture2D" uid="uid://ca5461nb3bxi8" path="res://misc/main_menu/sprites/logo.png" id="3_g3yyb"]
+[ext_resource type="Theme" uid="uid://c1i0aferjhvnu" path="res://levels/common/hud/themes/button_theme.tres" id="3_xdv5c"]
+[ext_resource type="Script" path="res://levels/congratulations_level/exit.gd" id="4_w7a4u"]
+
+[node name="CongratulationsLevel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_stqdp")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = -71.0
+offset_right = 129.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_g3yyb")
+expand_mode = 1
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WOW" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.5
+offset_top = -24.5
+offset_right = 82.5
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "CONGRATULATIONS!!
+PARABÉNS!!!!"
+horizontal_alignment = 1
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -42.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("3_xdv5c")
+text = "Quit"
+script = ExtResource("4_w7a4u")
+
+[node name="OST" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5nxvm")
+autoplay = true
+bus = &"Music"
+
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

@@ -1,0 +1,257 @@
+[gd_scene load_steps=29 format=3 uid="uid://bf7ucwnq3g0ul"]
+
+[ext_resource type="Script" path="res://actor/player/movement/player.gd" id="1_57564"]
+[ext_resource type="Texture2D" uid="uid://dxi0cpctmarii" path="res://assets/Premium Platformer Asset Pack/Premium Platformer Asset Pack/Player/Idle_Pose.png" id="1_cmv83"]
+[ext_resource type="Texture2D" uid="uid://clxx5pf4ds3pc" path="res://assets/Premium Platformer Asset Pack/Premium Platformer Asset Pack/Player/Dodge_Roll.png" id="2_k6j6a"]
+[ext_resource type="Texture2D" uid="uid://1b71obm3uudu" path="res://assets/Premium Platformer Asset Pack/Premium Platformer Asset Pack/Player/Run_Animation.png" id="4_wefi0"]
+[ext_resource type="Texture2D" uid="uid://bfdkmox31omp5" path="res://assets/Premium Platformer Asset Pack/Premium Platformer Asset Pack/Effects/Energy_Bullet_2.png" id="6_gj2pf"]
+[ext_resource type="PackedScene" uid="uid://ca7jrx6b0yd63" path="res://actor/hitbox/player/player_hitbox.tscn" id="7_ss2q1"]
+[ext_resource type="Script" path="res://misc/audio/spatial/pool/spatial_audio_pool.gd" id="10_nq8i7"]
+[ext_resource type="Script" path="res://misc/audio/spatial/queue/spatial_audio_queue.gd" id="11_iq8q5"]
+[ext_resource type="AudioStream" uid="uid://cv7xy8b0cu46b" path="res://actor/player/sfx/swoosh/swoosh-sound-effect-for-fight-scenes-or-transitions-1-149889.mp3" id="12_28frr"]
+[ext_resource type="AudioStream" uid="uid://b7od34d08nwn4" path="res://actor/player/sfx/jump/jump.ogg" id="13_ein4p"]
+[ext_resource type="AudioStream" uid="uid://dmpj3esoyt4du" path="res://actor/player/sfx/swoosh/swoosh-sound-effect-for-fight-scenes-or-transitions-2-149890.mp3" id="13_s104d"]
+[ext_resource type="AudioStream" uid="uid://b84jym07r84v2" path="res://actor/player/sfx/swoosh/swoosh-sound-effect-for-fight-scenes-or-transitions-3-149888.mp3" id="14_ypoqe"]
+[ext_resource type="AudioStream" uid="uid://cdpoivxwtm5xi" path="res://actor/player/sfx/swoosh/swoosh-sound-effect-for-fight-scenes-or-transitions-4-149887.mp3" id="15_j7pko"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tvkr"]
+atlas = ExtResource("2_k6j6a")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wto1"]
+atlas = ExtResource("2_k6j6a")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_neh7t"]
+atlas = ExtResource("2_k6j6a")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojjf2"]
+atlas = ExtResource("2_k6j6a")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8m0ij"]
+atlas = ExtResource("4_wefi0")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6o8r"]
+atlas = ExtResource("4_wefi0")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmavx"]
+atlas = ExtResource("4_wefi0")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4uk3"]
+atlas = ExtResource("4_wefi0")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fmt41"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cmv83")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tvkr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wto1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_neh7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojjf2")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8m0ij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6o8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmavx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4uk3")
+}],
+"loop": true,
+"name": &"run",
+"speed": 30.0
+}]
+
+[sub_resource type="Curve" id="Curve_slkku"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 3.95605), 0.0, 0.0, 0, 0, Vector2(1, 193.846), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_w41qh"]
+max_value = 2.0
+_data = [Vector2(0.00561798, 2), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_duhd0"]
+_data = [Vector2(0, 0.373626), 0.0, -0.935499, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rc5e0"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ymh6j"]
+size = Vector2(4, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4j1bh"]
+radius = 3.0
+
+[node name="Player" type="CharacterBody2D" groups=["Hitstopped", "Player"]]
+collision_mask = 12
+script = ExtResource("1_57564")
+dash_speed_horizontal = null
+dash_speed_vertical = null
+dash_speed_diagonal = null
+dash_duration = 0.1
+max_health = null
+speed = 350.0
+jump_velocity = null
+acceleration = 500.0
+deceleration = 500.0
+jump_buffer_time = null
+coyote_time = 1.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 5
+sprite_frames = SubResource("SpriteFrames_fmt41")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="DashParticles" type="CPUParticles2D" parent="Particles"]
+z_index = -2
+emitting = false
+amount = 2000
+lifetime = 0.5
+one_shot = true
+emission_shape = 1
+emission_sphere_radius = 4.0
+direction = Vector2(1, -1)
+gravity = Vector2(0, 0)
+angular_velocity_curve = SubResource("Curve_slkku")
+linear_accel_min = 10.0
+linear_accel_max = 100.0
+damping_min = 1.0
+damping_max = 50.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_w41qh")
+
+[node name="LandParticles" type="CPUParticles2D" parent="Particles"]
+emitting = false
+amount = 50
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, -980)
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+angular_velocity_min = 72.73
+angular_velocity_max = 392.73
+scale_amount_curve = SubResource("Curve_duhd0")
+
+[node name="HitParticles" type="CPUParticles2D" parent="Particles"]
+z_index = 2
+material = SubResource("CanvasItemMaterial_rc5e0")
+emitting = false
+amount = 1
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("6_gj2pf")
+gravity = Vector2(0, 0)
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ymh6j")
+
+[node name="HitStopTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[node name="Boxes" type="Node2D" parent="."]
+
+[node name="PlayerHitbox" parent="Boxes" instance=ExtResource("7_ss2q1")]
+collision_layer = 16
+collision_mask = 98
+
+[node name="PlayerEnemyHurtbox" type="Area2D" parent="Boxes"]
+position = Vector2(0, 1)
+collision_layer = 16
+collision_mask = 160
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boxes/PlayerEnemyHurtbox"]
+shape = SubResource("CircleShape2D_4j1bh")
+
+[node name="PlayerStaticHurtbox" type="Area2D" parent="Boxes"]
+position = Vector2(0, 1)
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boxes/PlayerStaticHurtbox"]
+shape = SubResource("CircleShape2D_4j1bh")
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="SwooshSFXPool" type="Node" parent="Audio"]
+script = ExtResource("10_nq8i7")
+
+[node name="AudioQueue" type="Node" parent="Audio/SwooshSFXPool"]
+script = ExtResource("11_iq8q5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio/SwooshSFXPool/AudioQueue"]
+stream = ExtResource("12_28frr")
+
+[node name="AudioQueue2" type="Node" parent="Audio/SwooshSFXPool"]
+script = ExtResource("11_iq8q5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio/SwooshSFXPool/AudioQueue2"]
+stream = ExtResource("13_s104d")
+
+[node name="AudioQueue3" type="Node" parent="Audio/SwooshSFXPool"]
+script = ExtResource("11_iq8q5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio/SwooshSFXPool/AudioQueue3"]
+stream = ExtResource("14_ypoqe")
+
+[node name="AudioQueue4" type="Node" parent="Audio/SwooshSFXPool"]
+script = ExtResource("11_iq8q5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio/SwooshSFXPool/AudioQueue4"]
+stream = ExtResource("15_j7pko")
+
+[node name="JumpSFX" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("13_ein4p")
+volume_db = -3.0
+pitch_scale = 1.5
+
+[connection signal="timeout" from="HitStopTimer" to="." method="_on_hit_stop_timer_timeout"]
+[connection signal="area_entered" from="Boxes/PlayerEnemyHurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="Boxes/PlayerStaticHurtbox" to="." method="_on_hurtbox_area_entered"]

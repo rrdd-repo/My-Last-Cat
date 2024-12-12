@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://df0r2kkylvfnv"]
+
+[ext_resource type="Script" path="res://misc/audio/manager/audio_manager.gd" id="1_aqiui"]
+[ext_resource type="Script" path="res://misc/audio/normal/queue/audio_queue.gd" id="2_2681r"]
+[ext_resource type="AudioStream" uid="uid://c1nopajvhnt4y" path="res://collectibles/coin/sfx/retro-coin-4-236671.mp3" id="3_foc11"]
+[ext_resource type="AudioStream" uid="uid://cxvunx14tdvtj" path="res://collectibles/health/sfx/health_pickup_sfx.ogg" id="4_agf3t"]
+
+[node name="AudioManager" type="Node2D"]
+script = ExtResource("1_aqiui")
+
+[node name="CoinSFX" type="Node" parent="."]
+script = ExtResource("2_2681r")
+audio_count = 15
+audio_stream = ExtResource("3_foc11")
+
+[node name="HealthSFX" type="Node" parent="."]
+script = ExtResource("2_2681r")
+audio_count = 2
+audio_stream = ExtResource("4_agf3t")

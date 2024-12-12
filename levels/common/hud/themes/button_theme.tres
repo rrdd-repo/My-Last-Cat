@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c1i0aferjhvnu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_javf8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l3em3"]
+
+[resource]
+/styles/focus = SubResource("StyleBoxFlat_javf8")
+Button/styles/focus = SubResource("StyleBoxFlat_l3em3")

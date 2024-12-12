@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://brjdkhib4rqcj"
+path="res://.godot/imported/Funny Cat.ogg-71ec1e9fdb29cbfe862b87f05991ce44.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/Funny Cat.ogg"
+dest_files=["res://.godot/imported/Funny Cat.ogg-71ec1e9fdb29cbfe862b87f05991ce44.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

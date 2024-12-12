@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://drtesnn7ddorv"]
+
+[ext_resource type="Script" path="res://misc/audio/spatial/pool/spatial_audio_pool.gd" id="1_k50an"]
+
+[node name="AudioPool" type="Node2D"]
+script = ExtResource("1_k50an")

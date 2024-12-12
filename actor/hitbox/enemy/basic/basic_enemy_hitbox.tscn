@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://esv0p32mwm3b"]
+
+[ext_resource type="Script" path="res://actor/hitbox/hitbox.gd" id="1_s6r6n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bx7v5"]
+radius = 5.09902
+
+[node name="BasicEnemyHitbox" type="Area2D"]
+collision_layer = 128
+collision_mask = 3
+script = ExtResource("1_s6r6n")
+damage = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bx7v5")

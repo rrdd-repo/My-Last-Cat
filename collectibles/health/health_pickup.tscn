@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://dk8vhg2r74l4a"]
+
+[ext_resource type="PackedScene" uid="uid://d2dfuxd730ya7" path="res://collectibles/collectible.tscn" id="1_3piaj"]
+[ext_resource type="Script" path="res://collectibles/health/health_pickup.gd" id="2_7edlc"]
+[ext_resource type="Texture2D" uid="uid://bdtluifu5mjp4" path="res://collectibles/health/sprites/Heart_Animation.png" id="3_5062r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iidh5"]
+radius = 5.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esiaf"]
+atlas = ExtResource("3_5062r")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ylhk"]
+atlas = ExtResource("3_5062r")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_540cy"]
+atlas = ExtResource("3_5062r")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4520p"]
+atlas = ExtResource("3_5062r")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yjanx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esiaf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ylhk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_540cy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4520p")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Coin" instance=ExtResource("1_3piaj")]
+script = ExtResource("2_7edlc")
+amount = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_iidh5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_yjanx")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.326989

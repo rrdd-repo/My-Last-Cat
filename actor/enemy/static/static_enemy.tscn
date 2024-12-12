@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://0dj62lp4q7dg"]
+
+[ext_resource type="Script" path="res://actor/enemy/static/static_enemy.gd" id="1_0gtvt"]
+[ext_resource type="Texture2D" uid="uid://fcqkbdrp57u7" path="res://actor/enemy/static/sprites/Spike_Block.png" id="2_0wfe8"]
+[ext_resource type="PackedScene" uid="uid://86j5rfhfuxip" path="res://actor/hitbox/enemy/static/static_hitbox.tscn" id="3_vxkab"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2u0f"]
+size = Vector2(8, 8)
+
+[node name="StaticEnemy" type="StaticBody2D"]
+collision_layer = 68
+collision_mask = 0
+script = ExtResource("1_0gtvt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f2u0f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+z_index = 10
+texture = ExtResource("2_0wfe8")
+
+[node name="StaticHitbox" parent="." instance=ExtResource("3_vxkab")]
+collision_layer = 256
+collision_mask = 3

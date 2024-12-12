@@ -1,0 +1,174 @@
+[gd_scene load_steps=6 format=3 uid="uid://b56pmt0agplvg"]
+
+[ext_resource type="Script" path="res://misc/main_menu/how_to_play/how_to_play.gd" id="1_oam25"]
+[ext_resource type="Texture2D" uid="uid://ca5461nb3bxi8" path="res://misc/main_menu/sprites/logo.png" id="2_5axsj"]
+[ext_resource type="Texture2D" uid="uid://dga08i540dnya" path="res://misc/main_menu/backgrounds/GrassLand_Background_Guide.png" id="3_4txad"]
+[ext_resource type="Script" path="res://misc/main_menu/how_to_play/close_button.gd" id="4_56mx3"]
+[ext_resource type="Theme" uid="uid://c1i0aferjhvnu" path="res://levels/common/hud/themes/button_theme.tres" id="4_nr84b"]
+
+[node name="HowToPlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oam25")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.294118)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -56.0
+offset_top = -32.0
+offset_right = 56.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_4txad")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.294118)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_5axsj")
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -304.5
+offset_top = -273.0
+offset_right = 304.5
+offset_bottom = 273.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel2/VBoxContainer"]
+layout_mode = 2
+text = "English"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Panel2/VBoxContainer"]
+layout_mode = 2
+text = "The player's objective is to reach the end of the level.
+However, your undead cat friend randomly starts to harm you.
+Can you find out why?"
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="Panel2/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Keyboard:
+WASD/Directional keys - Movement
+Space/Z/Right Mouse - Jump
+Ctrl/Shift/X - Dash
+R - Reset
+Esc - Pause"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="Panel2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Panel2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Controller:
+Joystick/Directional buttons - Movement
+A/B/Cross/Circle - Jump
+Every Other Button - Dash
+Select - Reset
+Start - Pause"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="Panel2/VBoxContainer"]
+layout_mode = 2
+text = "Português"
+horizontal_alignment = 1
+
+[node name="Panel3" type="Panel" parent="Panel2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="Panel2/VBoxContainer"]
+layout_mode = 2
+text = "O objetivo do jogador é chegar até o final da fase.
+Entretanto, o seu morto-vivo amigo felino aleatóriamente começa a te ferir.
+Consegue descobrir o porquê?"
+horizontal_alignment = 1
+
+[node name="Panel4" type="Panel" parent="Panel2/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel2/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Teclado:
+WASD/Teclas de direção - Movimento
+Espaço/Z/Mouse Direito - Pulo
+Ctrl/Shift/X - Esquiva
+R - Reset
+Esc - Pausar"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="Panel2/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Panel2/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Controller:
+Joystick/Botões direcionais - Movimento
+A/B/Bolinha/Triângulo - Pulo
+Qualquer outro botão - Esquiva
+Select - Reset
+Start - Pausar"
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -202.0
+offset_top = -104.0
+offset_right = -140.0
+offset_bottom = -73.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(3, 3)
+theme = ExtResource("4_nr84b")
+text = "Close"
+script = ExtResource("4_56mx3")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

@@ -1,0 +1,136 @@
+[gd_scene load_steps=10 format=3 uid="uid://5frd4ab1x2x"]
+
+[ext_resource type="Script" path="res://misc/main_menu/main_menu.gd" id="1_biybx"]
+[ext_resource type="Texture2D" uid="uid://ch7iywb7dg4uh" path="res://misc/main_menu/backgrounds/Dungeon_Background_Guide.png" id="2_ah7oq"]
+[ext_resource type="Texture2D" uid="uid://ca5461nb3bxi8" path="res://misc/main_menu/sprites/logo.png" id="3_ish0u"]
+[ext_resource type="AudioStream" uid="uid://bhhuvwcxmwt4x" path="res://music/1087396_CuRsE-oF-tHe-WiTcHcAt.mp3" id="4_cphmo"]
+[ext_resource type="Texture2D" uid="uid://d17gkbpc0wkqq" path="res://misc/ctrl alt.png" id="4_eecr3"]
+[ext_resource type="Script" path="res://misc/main_menu/play_button.gd" id="5_a6vda"]
+[ext_resource type="Theme" uid="uid://c1i0aferjhvnu" path="res://levels/common/hud/themes/button_theme.tres" id="5_q7dmp"]
+[ext_resource type="PackedScene" uid="uid://66p3ucdmawua" path="res://misc/main_menu/credits/credits.tscn" id="5_x4vss"]
+[ext_resource type="PackedScene" uid="uid://b56pmt0agplvg" path="res://misc/main_menu/how_to_play/how_to_play.tscn" id="6_rul8f"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_biybx")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.494118)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -104.0
+offset_right = 184.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ah7oq")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -149.5
+offset_top = -84.0
+offset_right = 149.5
+offset_bottom = 84.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ish0u")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -58.0
+offset_bottom = 41.0
+grow_horizontal = 0
+texture = ExtResource("4_eecr3")
+expand_mode = 1
+
+[node name="Options" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Options"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -108.0
+offset_top = -33.0
+offset_right = 153.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.8, 0.8)
+
+[node name="Play" type="Button" parent="Options/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_q7dmp")
+text = "Play"
+script = ExtResource("5_a6vda")
+
+[node name="Credits" type="Button" parent="Options/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_q7dmp")
+text = "Credits"
+
+[node name="How to Play" type="Button" parent="Options/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_q7dmp")
+text = "How To Play"
+
+[node name="Quit" type="Button" parent="Options/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_q7dmp")
+text = "Quit"
+
+[node name="OST" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_cphmo")
+autoplay = true
+bus = &"Music"
+
+[node name="CreditsWindow" type="Window" parent="."]
+title = "Credits"
+initial_position = 1
+size = Vector2i(1280, 720)
+visible = false
+
+[node name="Credits" parent="CreditsWindow" instance=ExtResource("5_x4vss")]
+
+[node name="HowToPlayWindow" type="Window" parent="."]
+auto_translate_mode = 1
+title = "How to Play"
+initial_position = 1
+size = Vector2i(1280, 720)
+visible = false
+
+[node name="HowToPlay" parent="HowToPlayWindow" instance=ExtResource("6_rul8f")]
+
+[connection signal="pressed" from="Options/HBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Options/HBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Options/HBoxContainer/How to Play" to="." method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="Options/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="close_requested" from="CreditsWindow" to="." method="_on_credits_close_requested"]
+[connection signal="close_requested" from="HowToPlayWindow" to="." method="_on_how_to_play_close_requested"]

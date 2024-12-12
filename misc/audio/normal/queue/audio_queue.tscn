@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpjw2yetvnumg"]
+
+[ext_resource type="Script" path="res://misc/audio/normal/queue/audio_queue.gd" id="1_hy3mj"]
+
+[node name="AudioQueue" type="Node"]
+script = ExtResource("1_hy3mj")

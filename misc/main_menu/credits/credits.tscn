@@ -1,0 +1,117 @@
+[gd_scene load_steps=7 format=3 uid="uid://66p3ucdmawua"]
+
+[ext_resource type="Script" path="res://misc/main_menu/credits/credits.gd" id="1_68n1d"]
+[ext_resource type="Texture2D" uid="uid://d17gkbpc0wkqq" path="res://misc/ctrl alt.png" id="1_ctup8"]
+[ext_resource type="Texture2D" uid="uid://d3cmawibwhov3" path="res://misc/main_menu/backgrounds/Factory_Background_Guide.png" id="2_617g5"]
+[ext_resource type="Script" path="res://misc/main_menu/credits/close_button.gd" id="4_cf2k8"]
+[ext_resource type="Theme" uid="uid://c1i0aferjhvnu" path="res://levels/common/hud/themes/button_theme.tres" id="4_cn4yq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rjh11"]
+font_size = 14
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_68n1d")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.494118)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_617g5")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -497.5
+offset_top = -394.0
+offset_right = 497.5
+offset_bottom = 394.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ctup8")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2029.0
+offset_top = -232.5
+offset_right = 2029.0
+offset_bottom = 232.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Made for CTRL Alt Jam Halloween 2024
+Concept, Programming, Level Design
+Rosa S.
+Ghost Sprite, Playtesting, Additional Help
+River S.
+Made in Godot
+
+Graphics:
+Multi Platformer Tileset by Shackhal
+8×8 Platformer Asset Pack with pico-8 palette by Niall Chandler Games
+
+SFX:
+Retro coin 4 by Driken5482
+Swoosh Sound Effect for Fight Scenes or Transitions 1 - 4 by DheerajakaM4JOR
+toy button by Pixabay
+Bump 7 by Pixabay
+hi hat 8 by LazyChillZone
+300+ NINTENDO – 8 BIT – VIDEO GAME SOUNDS - FREE by GameSupplyGuy
+
+Music:
+JensVide - Night Mind [Ambient x Groove] | Free Game Music
+Waterflame - Race around the world
+NotLeLee - Nasty GUACamole
+Who Likes to Party Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 3.0 License
+http://creativecommons.org/licenses/by/3.0/
+AvizuraNG - ~CuRsE oF tHe WiTcHcAt~
+nonomino - Funny Cat"
+label_settings = SubResource("LabelSettings_rjh11")
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -202.0
+offset_top = -104.0
+offset_right = -140.0
+offset_bottom = -73.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(3, 3)
+theme = ExtResource("4_cn4yq")
+text = "Close"
+script = ExtResource("4_cf2k8")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
